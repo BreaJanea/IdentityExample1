@@ -1,0 +1,26 @@
+﻿@model IdentityExample1.Models.Task
+@{
+    ViewData["Title"] = "SearchTask";
+     IEnumerable<IdentityExample1.Models.Task> tasks = (IEnumerable<IdentityExample1.Models.Task>)ViewData["allTasks"];
+    if (tasks is null)
+    {
+        tasks = new List<IdentityExample1.Models.Task>();
+    }
+}
+
+<h1>SearchTask</h1>
+
+@foreach (var task in tasks)
+{
+    @if (task.Description.Length > 100)
+    {
+        <div> @task.Description.Substring(0, 100)...</div>
+    }
+
+    else
+    {
+        <div> @task.Description </div>
+    }
+
+
+}
