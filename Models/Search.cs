@@ -9,6 +9,7 @@ namespace IdentityExample1.Models
     {
         private string searchWord;
 
+
         public string SearchWord { get => searchWord; set => searchWord = value; }
 
     }

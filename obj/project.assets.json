@@ -8017,7 +8017,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BSpencer-NP\\.nuget\\packages\\": {},
+    "C:\\Users\\bspencer\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
@@ -8027,7 +8027,7 @@
       "projectUniqueName": "C:\\DevBuild\\IdentityExample1\\IdentityExample1.csproj",
       "projectName": "IdentityExample1",
       "projectPath": "C:\\DevBuild\\IdentityExample1\\IdentityExample1.csproj",
-      "packagesPath": "C:\\Users\\BSpencer-NP\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\bspencer\\.nuget\\packages\\",
       "outputPath": "C:\\DevBuild\\IdentityExample1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
@@ -8035,7 +8035,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\BSpencer-NP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bspencer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

@@ -71,15 +71,46 @@ namespace IdentityExample1.Controllers
             return RedirectToAction("Index");
         }
 
- 
-
-        public IActionResult SearchTask(Search s)
+        [HttpPost]
+        public IActionResult Edit(int id)
         {
-            var searchTerm = s.SearchWord;
-            
-            ViewData["allTask"] = tasksDAL;
+            TempData["TaskToEditID"] = id;
             return RedirectToAction("Index");
+        }
 
+        [HttpPost]
+        public IActionResult Update(int id, IdentityExample1.Models.Task task)
+        {
+            task.ID = id;
+            Console.WriteLine("Task Desc: " + task.Description);
+            Console.WriteLine("Task DueDate: " + task.DueDate.ToString("MM/dd/yyyy"));
+            tasksDAL.UpdateTask(task);
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Search(IdentityExample1.Models.Task task)
+        {
+            if (string.IsNullOrEmpty(task.Description))
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            if (int.TryParse(_userManager.GetUserId(User), out int UserID))
+            {
+                string searchTerm = task.Description;
+                ViewData["allTasks"] = tasksDAL.SearchTasksByUserID(UserID, searchTerm);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            return View("Index");
         }
     }
 }

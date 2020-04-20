@@ -13,6 +13,7 @@ namespace IdentityExample1.Services
         void ToggleTaskbyID(int id);
         object GetAllTasksByUserID(int v);
         void DeleteTask(int id);
-        void SearchTask(Task task);
-        }
+        object SearchTasksByUserID(int userID, string searchTerm);
+        void UpdateTask(Task task);
+    }
 }

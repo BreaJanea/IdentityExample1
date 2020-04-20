@@ -77,22 +77,25 @@ namespace IdentityExample1.Services
 
 
 
-        public void SearchTask(Task task)
+        public object SearchTasksByUserID(int userID, string searchTerm)
         {
+            IEnumerable<IdentityExample1.Models.Task> SearchResults;
             SqlConnection conn = null;
 
-            const string searchQuery = "SELECT from Tasks WHERE Description LIKE @Search";
+            const string searchQuery = "select * from Tasks " +
+                "where UserID = @UserID and Description like @Description";
 
             try
             {
                 using (conn = new SqlConnection(connectionString))
                 {
-                    conn.Execute(searchQuery, task);
+                    SearchResults = conn.Query<IdentityExample1.Models.Task>(searchQuery, new { UserID = userID, Description = "%" + searchTerm + "%" });
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                SearchResults = null;
             }
             finally
             {
@@ -100,10 +103,9 @@ namespace IdentityExample1.Services
                 {
                     conn.Close();
                 }
-            }  
+            }
+            return SearchResults;
         }
-
-
 
 
         public IEnumerable<IdentityExample1.Models.Task> GetAllTasks()
@@ -179,6 +181,37 @@ namespace IdentityExample1.Services
                 {
                     conn.Execute(toggleCompleteQuery, new { ID = id });
                     Console.WriteLine("Task complete toggled");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+        }
+
+        public void UpdateTask(Task task)
+        {
+            SqlConnection conn = null;
+
+            const string updateTaskQuery = "update Tasks " +
+                "set  Description = @Description, " +
+                "DueDate = @DueDate " +
+                "where Id = @ID";
+
+            try
+            {
+                using (conn = new SqlConnection(connectionString))
+                {
+                    conn.Execute(updateTaskQuery, task);
                 }
             }
             catch (Exception e)
